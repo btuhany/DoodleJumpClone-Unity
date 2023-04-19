@@ -13,14 +13,16 @@ public class CameraController : MonoBehaviour
     {
         _offset = transform.position.y - _player.position.y;
     }
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (transform.position.y < _player.position.y + _offset)
         {
           
             Vector3 newPos = new Vector3(transform.position.x, _player.position.y + _offset, transform.position.z);
             transform.position = Vector3.Lerp(transform.position, newPos, _followLerpSpeed * Time.fixedDeltaTime);
+            GameManager.Instance.IncreaseScore(0.5f);
+            
         }
-        
+
     }
 }

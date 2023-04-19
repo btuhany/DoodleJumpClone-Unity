@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FragilePlatformController : MonoBehaviour
 {
+    
+    [SerializeField] float _destroyDelay = 2f;
     Rigidbody2D _rb;
     EdgeCollider2D _collider;
     private void Awake()
@@ -12,14 +14,13 @@ public class FragilePlatformController : MonoBehaviour
         _collider= GetComponent<EdgeCollider2D>();
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Fall()
     {
-        Debug.Log("Player");
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            
-            _rb.isKinematic = false;
-            _collider.isTrigger = true;
-        }
+        _rb.isKinematic = false;
+        _rb.velocity = Vector3.down * 10f;
+        _collider.isTrigger = true;
+        Destroy(this.gameObject, _destroyDelay);
     }
+
+
 }

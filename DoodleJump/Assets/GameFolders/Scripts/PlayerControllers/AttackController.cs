@@ -17,7 +17,8 @@ public class AttackController : MonoBehaviour
     {
         if (_canShoot)
         {
-            Instantiate(_projectile, _projectileSpawnTransform.position, Quaternion.Euler(0,0,0));
+            GameObject projectile = ProjectileObjectPoolManager.Instance.GetProjectileFromPool();
+            projectile.transform.position = _projectileSpawnTransform.position;
             StartCoroutine(FireCooldown());
             _anim.AttackAnim();
         }

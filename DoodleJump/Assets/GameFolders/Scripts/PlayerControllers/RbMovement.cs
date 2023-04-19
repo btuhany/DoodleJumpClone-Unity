@@ -5,6 +5,7 @@ using UnityEngine;
 public class RbMovement
 {
 	Rigidbody2D _rb;
+	public Vector3 Velocity => _rb.velocity;
 	public RbMovement(Rigidbody2D rb)
 	{
 		_rb = rb;

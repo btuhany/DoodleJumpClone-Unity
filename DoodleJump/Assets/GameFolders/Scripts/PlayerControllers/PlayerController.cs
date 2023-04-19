@@ -48,15 +48,33 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("JumpBoost")) 
+
+        if (_movement.Velocity.y<=0.1f)
         {
-        
-            _movement.VerticalForce(_jumpForce * _jumpBoostMultiplier);
-        }
-        if(collision.gameObject.CompareTag("SafePlatform"))
-        {
-            _movement.VerticalForce(_jumpForce);
+            if (collision.gameObject.CompareTag("JumpBoost"))
+            {
+                _movement.VerticalForce(_jumpForce * _jumpBoostMultiplier);
+            }
+            else if (collision.gameObject.CompareTag("SafePlatform"))
+            {
+                _movement.VerticalForce(_jumpForce);
+            }
+            
+
+
         }
         
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("UnsafePlatform") && _movement.Velocity.y <= 0.1f)
+        {
+            collision.gameObject.GetComponent<FragilePlatformController>().Fall();
+        }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            GameManager.Instance.GameOver();
+        }
+    }
+
 }

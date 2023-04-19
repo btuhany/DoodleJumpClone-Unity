@@ -14,7 +14,7 @@ public class MobilePlatformController : MonoBehaviour
         if(_moveToRight)
         {
             transform.Translate(Vector3.right * _moveSpeed * Time.deltaTime);
-            if (transform.position.x > PlatformManager.Instance.MaxHorizontalPos - _offset)
+            if (transform.position.x > LevelGeneratorManager.Instance.MaxHorizontalPos - _offset)
             {
                 _moveToRight= false;
             }
@@ -23,7 +23,7 @@ public class MobilePlatformController : MonoBehaviour
         else
         {
             transform.Translate(Vector3.left * _moveSpeed * Time.deltaTime);
-            if (transform.position.x < PlatformManager.Instance.MinHorizontalPos + _offset)
+            if (transform.position.x < LevelGeneratorManager.Instance.MinHorizontalPos + _offset)
             {
                 _moveToRight = true;
             }

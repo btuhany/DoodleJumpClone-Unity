@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SafePlatform
   - JumpBoost
+  - UnsafePlatform
+  - Enemy
   layers:
   - Default
   - TransparentFX
